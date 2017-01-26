@@ -1,16 +1,3 @@
-/* var theGrid = [
- [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
- [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
- [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
- [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
- [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
- [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
- [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
- [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
- [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
- [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-];
-*/
 
 var myRover = {
   position: [0,0],
@@ -20,6 +7,8 @@ var mrsRover = {
   position: [1,0],
   direction: 'E'
 };
+
+//Moving the rover using f,b,l,r
 function doCommand(rover, com) {
   switch(com) {
    case 'f':
@@ -29,7 +18,7 @@ function doCommand(rover, com) {
       goBack(rover)
     break;
     case 'l':
-      turnRover(rover, "l")
+      turnRover(rover, 'l')
     break;
      case 'r':
       turnRover(rover, 'r')
@@ -53,7 +42,7 @@ function goForward(rover) {
       rover.position[0]--
       break;
   };
-
+//Rover will now wrap around the grid when moving forward
   if (rover.position[0] >= 10)   {
   rover.position = [0,0]
   }
@@ -61,13 +50,12 @@ function goForward(rover) {
   rover.position = [0,0]
   }
 
-
+//There is an obstacle here!!!
 if (rover.position[1] >= 7) {
   rover.position = [0,6]
   console.log("Obstacle detected")
 }
 }
-//myRover.direction = 'N';
 function goBack(rover){
   switch (rover.direction) {
     case 'N':
@@ -82,8 +70,8 @@ function goBack(rover){
       case 'W':
         rover.position[0]++
         break;
-
   }
+  //Rover will now wrap around the grid when going back
   if (rover.position[0] <= 10)   {
   rover.position = [0,0]
   }
@@ -91,6 +79,8 @@ function goBack(rover){
   rover.position = [0,0]
   }
 }
+
+//Turning the rover based on direction only
 
 /* function turnRover(rover, newDirection){
   switch (newDirection) {
@@ -110,7 +100,7 @@ function goBack(rover){
 }
 */
 
-//-----attempting to change direction NOT based on N,S,E,W
+//Turn the rover left or right regardless of direction
 
 function turnRover (rover, newDirection) {
   switch (newDirection) {
@@ -138,25 +128,15 @@ case 'l':
   }
 
 
-//--------------RUN THE PROGRAM------------
+//--------------RUN THE PROGRAM IN HTML FILE AND VIEW RESULTS IN CONSOLE BROWSER------------
 
-var c = 'rffflfff';
+var c = prompt('enter commands:')
+var d = prompt('enter commands for rover 2:')
 for (var i = 0; i < c.length; i++){
   (doCommand (myRover, c[i]));
   console.log("New Rover Position: [" + myRover.position[0] + ", " + myRover.position[1] + "]")
 }
-var d = 'ffffffff';
 for (var i = 0; i < d.length; i++){
 (doCommand (mrsRover, c[i]));
 console.log("New Mrs. Rover Position: [" + mrsRover.position[0] + ", " + mrsRover.position[1] + "]")
 }
-/*
-goForward(myRover);
-console.log("New Rover Position: [" + myRover.position[0] + ", " + myRover.position[1] + "]")
-turnRover(myRover, 'N');
-console.log("New Rover Position: [" + myRover.position[0] + ", " + myRover.position[1] + "]")
-goBack(myRover);
-console.log("New Rover Position: [" + myRover.position[0] + ", " + myRover.position[1] + "]")
-goBack(myRover);
-console.log("New Rover Position: [" + myRover.position[0] + ", " + myRover.position[1] + "]")
-*/
